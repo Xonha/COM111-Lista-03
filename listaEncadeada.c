@@ -4,36 +4,67 @@
 #include <stdlib.h>
 #include "listaEncadeada.h"
 
+struct aluno
+{
+  int matricula;
+  char nome[30];
+  float nota;
+};
 // definição do struct elemento
-typedef struct elemento{
-  int dado;
-  struct elemento *prox;
-}Elemento;
+struct elemento
+{
+  Aluno dado;
+  Elemento *prox;
+};
+
+int criar_dado(int *dado)
+{
+  printf("\nDigite um valor: ");
+  scanf("%d", dado);
+
+  return 1;
+}
+
+Aluno *criar_aluno()
+{
+  Aluno *al = (Aluno *)malloc(sizeof(Aluno));
+
+  printf("\nNome: ");
+  scanf("%s", al->nome);
+  printf("Matricula: ");
+  scanf("%d", &al->matricula);
+  printf("Nota: ");
+  scanf("%f", &al->nota);
+
+  return al;
+}
 
 // função para alocar memória do tipo Lista
-Lista* criar_lista()
+Lista *criar_lista()
 {
-  Lista *li = (Lista*) malloc(sizeof(Lista));  
+  Lista *li = (Lista *)malloc(sizeof(Lista));
 
   // se a lista foi criada corretamente, indica que ela está vazia
-  if(li != NULL){
+  if (li != NULL)
+  {
     *li = NULL;
-  } 
+  }
 
   return li;
 }
 
-
 // função para liberar memória
 int liberar_lista(Lista *li)
 {
-  if(li == NULL){    
+  if (li == NULL)
+  {
     return 0;
   }
 
   // libera todos os nós da lista que foram alocados
   Elemento *no;
-  while(*li != NULL){
+  while (*li != NULL)
+  {
     no = *li;
     *li = (*li)->prox;
     free(no);
@@ -42,14 +73,15 @@ int liberar_lista(Lista *li)
   // libera o ponteiro da lista
   free(li);
 
-  return 1;  
+  return 1;
 }
 
 // função para obter o tamanho da lista
 int tamanho_lista(Lista *li)
 {
   // a lista não foi criada corretamente
-  if(li == NULL){
+  if (li == NULL)
+  {
     return 0;
   }
 
@@ -57,7 +89,8 @@ int tamanho_lista(Lista *li)
   Elemento *no = *li;
 
   // acrescenta cont até acabar a lista
-  while(no != NULL){
+  while (no != NULL)
+  {
     cont++;
     no = no->prox;
   }
@@ -70,13 +103,15 @@ int lista_vazia(Lista *li)
 {
   // verifica se houve problema na criação da lista
   // ou seja, li não é uma lista válida
-  if(li == NULL){
+  if (li == NULL)
+  {
     return -1;
   }
 
   // verifica se a lista foi criada corretamente
   // mas não contém nenhum valor
-  if(*li == NULL){
+  if (*li == NULL)
+  {
     return 1;
   }
 
@@ -84,40 +119,29 @@ int lista_vazia(Lista *li)
   return 0;
 }
 
-
-// função para verificar se a lista está cheia (não se aplica)
-int lista_cheia(Lista *li)
-{
-  return 0;
-}
-
-
 // função para alocar memória do tipo Elemento
-Elemento* criar_elemento()
+Elemento *criar_elemento()
 {
-  Elemento *no = (Elemento*) malloc(sizeof(Elemento));  
+  Elemento *no = (Elemento *)malloc(sizeof(Elemento));
 
   return no;
 }
 
-
 // função para inserir elemento no início da lista
-int inserir_lista_inicio(Lista *li, int dado)
+int inserir_lista_inicio(Lista *li, Aluno al)
 {
-  if(li == NULL){
-    return 0;
-  }
+  if (li == NULL)
+    return 0; // Se lista nao existe
 
   // cria um elemento novo
   Elemento *no;
   no = criar_elemento();
 
-  if(no == NULL){
-    return 0;
-  }
+  if (no == NULL)
+    return 0; //  Verifica alocação
 
   // atribui valores ao elemento novo
-  no->dado = dado;
+  no->dado = al;
   no->prox = (*li);
 
   // insere elemento no início da lista
@@ -126,37 +150,35 @@ int inserir_lista_inicio(Lista *li, int dado)
   return 1;
 }
 
-
 // função para inserir elemento no final da lista
-int inserir_lista_final(Lista *li, int dado)
+int inserir_lista_final(Lista *li, Aluno al)
 {
-  if(li == NULL){
+  if (li == NULL)
     return 0;
-  }
 
-  // cria um elemento novo
-  Elemento *no;
+  Elemento *no; // cria um elemento novo
   no = criar_elemento();
 
-  if(no == NULL){
+  if (no == NULL)
     return 0;
-  }
 
   // atribui valores ao elemento novo
-  no->dado = dado;
+  no->dado = al;
   no->prox = NULL;
 
   // se a lista estiver vazia, insere no início da lista
-  if( (*li) == NULL ){
+  if ((*li) == NULL)
+  {
     *li = no;
-
-  }else{
-
+  }
+  else
+  {
     // senão percorre a lista até o fim e insere no final
     Elemento *aux;
     aux = *li;
 
-    while(aux->prox != NULL){
+    while (aux->prox != NULL)
+    {
       aux = aux->prox;
     }
     aux->prox = no;
@@ -165,47 +187,46 @@ int inserir_lista_final(Lista *li, int dado)
   return 1;
 }
 
-
 // função para inserir elemento na lista de forma ordenada
-int inserir_lista_ordenada(Lista *li, int dado)
+int inserir_lista_ordenada(Lista *li, Aluno al)
 {
-  if(li == NULL){
+  if (li == NULL)
     return 0;
-  }
 
-  // cria um elemento novo
-  Elemento *no;
+  Elemento *no; // cria um elemento novo
   no = criar_elemento();
 
-  if(no == NULL){
+  if (no == NULL)
     return 0;
-  }
 
-  // atribui valores ao elemento novo
-  no->dado = dado;
+  no->dado = al; // atribui valores ao elemento novo
 
   // se a lista estiver vazia, insere no início da lista
-  if( (*li) == NULL ){
+  if ((*li) == NULL)
+  {
     no->prox = NULL;
     *li = no;
-
-  }else{
-
+  }
+  else
+  {
     // senão percorre a lista até achar o local correto e insere
     Elemento *anterior, *atual;
     atual = *li;
 
-    while(atual != NULL && atual->dado < dado){
+    while (atual != NULL && atual->dado.matricula < al.matricula)
+    {
       anterior = atual;
       atual = atual->prox;
     }
-    
+
     // insere na primeira posição
-    if( atual == (*li) ){
+    if (atual == (*li))
+    {
       no->prox = (*li);
       *li = no;
-
-    }else{
+    }
+    else
+    {
       no->prox = atual;
       anterior->prox = no;
     }
@@ -214,16 +235,17 @@ int inserir_lista_ordenada(Lista *li, int dado)
   return 1;
 }
 
-
 // função para remover elemento do início da lista
 int remover_lista_inicio(Lista *li)
 {
-  if(li == NULL){
+  if (li == NULL)
+  {
     return 0;
   }
 
   // lista vazia, não remove nada
-  if((*li) == NULL){
+  if ((*li) == NULL)
+  {
     return 0;
   }
 
@@ -238,33 +260,37 @@ int remover_lista_inicio(Lista *li)
   return 1;
 }
 
-
 // função para remover elemento do final da lista
 int remover_lista_final(Lista *li)
 {
-  if(li == NULL){
+  if (li == NULL)
+  {
     return 0;
   }
 
   // lista vazia, não remove nada
-  if((*li) == NULL){
+  if ((*li) == NULL)
+  {
     return 0;
   }
 
   // percorre lista até o final
   Elemento *anterior, *atual;
   atual = *li;
-  
-  while(atual->prox != NULL){
+
+  while (atual->prox != NULL)
+  {
     anterior = atual;
     atual = atual->prox;
   }
 
   // remove o primeiro elemento, se este for o único da lista
-  if(atual == (*li)){ 
-    *li = atual->prox;  
-
-  }else{
+  if (atual == (*li))
+  {
+    *li = atual->prox;
+  }
+  else
+  {
     anterior->prox = atual->prox;
   }
 
@@ -272,19 +298,19 @@ int remover_lista_final(Lista *li)
   free(atual);
 
   return 1;
-
 }
 
-
 // função para remover elemento do meio da lista
-int remover_lista_meio(Lista *li, int dado)
+int remover_lista_matricula(Lista *li, Aluno al)
 {
-  if(li == NULL){
+  if (li == NULL)
+  {
     return 0;
   }
 
   // lista vazia, não remove nada
-  if((*li) == NULL){
+  if ((*li) == NULL)
+  {
     return 0;
   }
 
@@ -292,61 +318,67 @@ int remover_lista_meio(Lista *li, int dado)
   Elemento *anterior, *atual;
   atual = *li;
 
-  while(atual != NULL && atual->dado != dado){
+  while (atual != NULL && atual->dado.matricula != al.matricula)
+  {
     anterior = atual;
     atual = atual->prox;
   }
 
   // elemento não foi encontrado
-  if(atual == NULL){
+  if (atual == NULL)
+  {
     return 0;
   }
 
   // remove o primeiro elemento
-  if(atual == (*li)){
+  if (atual == (*li))
+  {
     *li = atual->prox;
-
-  }else{
+  }
+  else
+  {
     anterior->prox = atual->prox;
   }
 
   //libera Elemento atual
   free(atual);
   return 1;
-
 }
 
-int buscar_lista_posicao(Lista *li, int pos, int *dado)
+int buscar_lista_posicao(Lista *li, int pos, Aluno *al)
 {
   // verifica se a lista foi criada corretamente, se não está vazia e se a posição é válida (note que é a posição na lista e não o índice do vetor)
-  if(li == NULL || (*li) == NULL || pos <= 0){
+  if (li == NULL || (*li) == NULL || pos <= 0)
+  {
     return 0;
   }
 
   Elemento *no = *li;
   int i = 1;
 
-  while(no != NULL && i < pos){
+  while (no != NULL && i < pos)
+  {
     no = no->prox;
     i++;
   }
 
   // posição não existe na lista
-  if(no == NULL){
+  if (no == NULL)
+  {
     return 0;
   }
 
   // copia o dado da posição desejada (parâmetro passado por referência)
-  *dado = no->dado;
+  al->matricula = no->dado.matricula;
 
   return 1;
 }
 
-
-int buscar_lista_dado(Lista *li, int dado, int *pos)
+int buscar_lista_dado(Lista *li, Aluno al, int *pos)
 {
   // verifica se a lista foi criada corretamente
-  if(li == NULL || (*li) == NULL){
+  if (li == NULL || (*li) == NULL)
+  {
     return 0;
   }
 
@@ -354,40 +386,39 @@ int buscar_lista_dado(Lista *li, int dado, int *pos)
   Elemento *no = *li;
   int i = 1;
 
-  while(no != NULL && no->dado != dado){
+  while (no != NULL && no->dado.matricula != al.matricula)
+  {
     no = no->prox;
     i++;
   }
-  
-  // verifica se elemento não foi encontrado 
-  if(no == NULL){ 
+
+  // verifica se elemento não foi encontrado
+  if (no == NULL)
+  {
     return 0;
   }
 
   // copia a posição da lista onde o dado foi encontrado (parâmetro passado por referência)
-  *pos = i; 
+  *pos = i;
 
   return 1;
 }
-
-
 
 //**************************************************************************
 // função para imprimir a lista dinâmica
 int imprimir_lista(Lista *li)
 {
-    if(li == NULL || (*li) == NULL){
-      return 0;
-    }
+  if (li == NULL || (*li) == NULL)
+    return 0;
 
-    Elemento *aux = (*li);
+  Elemento *aux = (*li);
 
-    while(aux->prox != NULL){
-      printf(" %d ", aux->dado);
-      aux = aux->prox;
-    }
-
-    printf(" %d ", aux->dado);
-
-    return 1;
+  while (aux->prox != NULL)
+  {
+    printf("\n%d\t%.2f\t%s", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
+    aux = aux->prox;
+  }
+  //printf("\n%s\t%d\t%.2f\n", aux->dado.nome, aux->dado.matricula, aux->dado.nota);
+  printf("\n%d\t%.2f\t%s\n", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
+  return 1;
 }
