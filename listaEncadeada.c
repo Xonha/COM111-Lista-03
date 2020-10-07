@@ -39,6 +39,14 @@ Aluno *criar_aluno()
   return al;
 }
 
+// função para alocar memória do tipo Elemento
+Elemento *criar_elemento()
+{
+  Elemento *no = (Elemento *)malloc(sizeof(Elemento));
+
+  return no;
+}
+
 // função para alocar memória do tipo Lista
 Lista *criar_lista()
 {
@@ -48,8 +56,10 @@ Lista *criar_lista()
   if (li != NULL)
   {
     *li = NULL;
+    printf("\nLista criada com sucesso!");
   }
-
+  else
+    printf("\nLista não criada!");
   return li;
 }
 
@@ -58,6 +68,7 @@ int liberar_lista(Lista *li)
 {
   if (li == NULL)
   {
+    printf("\n Lista nao existe!");
     return 0;
   }
 
@@ -72,6 +83,8 @@ int liberar_lista(Lista *li)
 
   // libera o ponteiro da lista
   free(li);
+
+  printf("\nLista liberada com sucesso!");
 
   return 1;
 }
@@ -117,14 +130,6 @@ int lista_vazia(Lista *li)
 
   // se houver elementos, retorna 0
   return 0;
-}
-
-// função para alocar memória do tipo Elemento
-Elemento *criar_elemento()
-{
-  Elemento *no = (Elemento *)malloc(sizeof(Elemento));
-
-  return no;
 }
 
 // função para inserir elemento no início da lista

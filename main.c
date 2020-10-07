@@ -8,6 +8,7 @@ int main(void)
   // no início a lista está vazia, logo, o ponteiro inicio tem valor NULL
   //o ponteiro inicio conterá o endereço do primeiro elemento da lista
   Lista *li = NULL;
+
   int opcao, dado, ok, pos;
 
   Aluno *al;
@@ -25,8 +26,8 @@ int main(void)
     printf("\n06 - Remover início");
     printf("\n07 - Remover final");
     printf("\n08 - Remover matricula");
-    printf("\n09 - Buscar posição");
-    printf("\n10 - Buscar dado");
+    printf("\n09 - Buscar posicao");
+    printf("\n10 - Buscar matricula(Erro)");
     printf("\n11 - Imprimir");
     printf("\nOpção: ");
     scanf("%d", &opcao);
@@ -37,20 +38,10 @@ int main(void)
     case 1:
       li = criar_lista(); // criar lista
 
-      if (li != NULL)
-        printf("\nLista criada com sucesso!");
-      else
-        printf("\nLista não criada!");
-
       break;
 
     case 2:
-      ok = liberar_lista(li); // liberar lista
-
-      if (ok)
-        printf("\n Lista liberada com sucesso!");
-      else
-        printf("\n Lista não liberada!");
+      liberar_lista(li); // liberar lista
 
       break;
 
@@ -120,38 +111,34 @@ int main(void)
       break;
 
     case 9:
-      printf("\n Posição do elemento a ser buscado: ");
+      printf("\n Posição do aluno na lista: ");
       scanf("%d", &pos);
       // busca elemento pela posicao
       ok = buscar_lista_posicao(li, pos, al);
 
       if (ok)
       {
-        printf("\n Busca realizada com sucesso!");
-        printf("\n Elemento da %dª posição: ", pos);
-        printf("%d", dado);
+        printf("\nAluno em %dº da lista: ", pos);
+        printf("%s\t%i", al->nome, al->matricula);
       }
       else
-      {
-        printf("\n Posição não existe!");
-      }
+        printf("\nPosição não existe!");
 
       break;
 
     case 10:
-      printf("\n Código do produto a ser buscado: ");
-      scanf("%d", &dado);
+      printf("\nMatricula do aluno a ser buscado: ");
+      scanf("%d", &al->matricula);
       // busca elemento pelo dado
       ok = buscar_lista_dado(li, *al, &pos);
 
       if (ok)
       {
-        printf("\n Busca realizada com sucesso!");
-        printf("\n Elemento da %dª posição: ", pos);
-        printf("%d", dado);
+        printf("\nAluno em %dº na lista: ", pos);
+        printf("%s\t%i", al->nome, al->matricula);
       }
       else
-        printf("\n Elemento não encontrado!");
+        printf("\nAluno não encontrado!");
 
       break;
 
