@@ -133,33 +133,39 @@ int lista_vazia(Lista *li)
 }
 
 // função para inserir elemento no início da lista
-int inserir_lista_inicio(Lista *li, Aluno al)
+int inserir_lista_inicio(Lista *li)
 {
   if (li == NULL)
     return 0; // Se lista nao existe
 
-  // cria um elemento novo
-  Elemento *no;
+  Aluno *al; // cria um aluno novo
+  al = criar_aluno();
+
+  Elemento *no; // cria um elemento novo
   no = criar_elemento();
 
   if (no == NULL)
     return 0; //  Verifica alocação
 
   // atribui valores ao elemento novo
-  no->dado = al;
+  no = al;
   no->prox = (*li);
 
   // insere elemento no início da lista
   *li = no;
+  printf("\nInserção realizada com sucesso!");
 
   return 1;
 }
 
 // função para inserir elemento no final da lista
-int inserir_lista_final(Lista *li, Aluno al)
+int inserir_lista_final(Lista *li)
 {
   if (li == NULL)
     return 0;
+
+  Aluno *al; // cria um aluno novo
+  al = criar_aluno();
 
   Elemento *no; // cria um elemento novo
   no = criar_elemento();
@@ -168,7 +174,7 @@ int inserir_lista_final(Lista *li, Aluno al)
     return 0;
 
   // atribui valores ao elemento novo
-  no->dado = al;
+  no = al;
   no->prox = NULL;
 
   // se a lista estiver vazia, insere no início da lista
@@ -189,14 +195,19 @@ int inserir_lista_final(Lista *li, Aluno al)
     aux->prox = no;
   }
 
+  printf("\nInserção realizada com sucesso!");
+
   return 1;
 }
 
 // função para inserir elemento na lista de forma ordenada
-int inserir_lista_ordenada(Lista *li, Aluno al)
+int inserir_lista_ordenada(Lista *li)
 {
   if (li == NULL)
     return 0;
+
+  Aluno *al; // cria um aluno novo
+  al = criar_aluno();
 
   Elemento *no; // cria um elemento novo
   no = criar_elemento();
@@ -204,7 +215,7 @@ int inserir_lista_ordenada(Lista *li, Aluno al)
   if (no == NULL)
     return 0;
 
-  no->dado = al; // atribui valores ao elemento novo
+  no = al; // atribui valores ao elemento novo
 
   // se a lista estiver vazia, insere no início da lista
   if ((*li) == NULL)
@@ -218,7 +229,7 @@ int inserir_lista_ordenada(Lista *li, Aluno al)
     Elemento *anterior, *atual;
     atual = *li;
 
-    while (atual != NULL && atual->dado.matricula < al.matricula)
+    while (atual != NULL && atual->dado.matricula < al->matricula)
     {
       anterior = atual;
       atual = atual->prox;
@@ -262,6 +273,8 @@ int remover_lista_inicio(Lista *li)
   // libera Elemento atual
   free(atual);
 
+  printf("\nRemoção realizada com sucesso!");
+
   return 1;
 }
 
@@ -302,63 +315,59 @@ int remover_lista_final(Lista *li)
   //libera Elemento atual
   free(atual);
 
+  printf("\nRemoção realizada com sucesso!");
+
   return 1;
 }
 
 // função para remover elemento do meio da lista
-int remover_lista_matricula(Lista *li, Aluno al)
+int remover_lista_matricula(Lista *li)
 {
   if (li == NULL)
-  {
     return 0;
-  }
 
-  // lista vazia, não remove nada
-  if ((*li) == NULL)
-  {
+  if ((*li) == NULL) // lista vazia, não remove nada
     return 0;
-  }
 
-  // percorre a lista até achar o elemento e remove
+  printf("\nMatricula a ser removido: ");
+  int dado;
+  scanf("%d", &dado);
+
   Elemento *anterior, *atual;
   atual = *li;
 
-  while (atual != NULL && atual->dado.matricula != al.matricula)
-  {
+  while (atual != NULL && atual->dado.matricula != dado)
+  { // percorre a lista até achar o elemento e remove
     anterior = atual;
     atual = atual->prox;
   }
 
   // elemento não foi encontrado
   if (atual == NULL)
-  {
     return 0;
-  }
 
-  // remove o primeiro elemento
-  if (atual == (*li))
-  {
+  if (atual == (*li)) // remove o primeiro elemento
     *li = atual->prox;
-  }
   else
-  {
     anterior->prox = atual->prox;
-  }
 
   //libera Elemento atual
   free(atual);
+
   return 1;
 }
 
-int buscar_lista_posicao(Lista *li, int pos, Aluno *al)
+int buscar_lista_posicao(Lista *li)
 {
+  printf("\nPosição do aluno na lista: ");
+  int pos;
+  scanf("%d", &pos);
+
   // verifica se a lista foi criada corretamente, se não está vazia e se a posição é válida (note que é a posição na lista e não o índice do vetor)
   if (li == NULL || (*li) == NULL || pos <= 0)
-  {
     return 0;
-  }
 
-  Elemento *no = *li;
+  Lista no = *li;
   int i = 1;
 
   while (no != NULL && i < pos)
@@ -367,31 +376,30 @@ int buscar_lista_posicao(Lista *li, int pos, Aluno *al)
     i++;
   }
 
-  // posição não existe na lista
-  if (no == NULL)
-  {
+  if (no == NULL) // posição não existe na lista
     return 0;
-  }
 
-  // copia o dado da posição desejada (parâmetro passado por referência)
-  al->matricula = no->dado.matricula;
+  printf("\nAluno em %dº da lista: ", pos);
+  printf("%s\t%i", no->dado.nome, no->dado.matricula);
 
   return 1;
 }
 
-int buscar_lista_dado(Lista *li, Aluno al, int *pos)
+int buscar_lista_matricula(Lista *li)
 {
   // verifica se a lista foi criada corretamente
   if (li == NULL || (*li) == NULL)
-  {
     return 0;
-  }
+
+  printf("\nMatricula do aluno a ser buscado: ");
+  int matricula;
+  scanf("%d", &matricula);
 
   // procura a posição no vetor onde o dado desejado se encontra
   Elemento *no = *li;
   int i = 1;
 
-  while (no != NULL && no->dado.matricula != al.matricula)
+  while (no != NULL && no->dado.matricula != matricula)
   {
     no = no->prox;
     i++;
@@ -399,12 +407,10 @@ int buscar_lista_dado(Lista *li, Aluno al, int *pos)
 
   // verifica se elemento não foi encontrado
   if (no == NULL)
-  {
     return 0;
-  }
 
-  // copia a posição da lista onde o dado foi encontrado (parâmetro passado por referência)
-  *pos = i;
+  printf("\nAluno de matricula %d: ", matricula);
+  printf("%s", no->dado.nome);
 
   return 1;
 }
@@ -418,12 +424,15 @@ int imprimir_lista(Lista *li)
 
   Elemento *aux = (*li);
 
+  printf("\nLista de alunos: ");
+  printf("\n[Matricula]\t[Nota]\t[Nome]");
+
   while (aux->prox != NULL)
   {
     printf("\n%d\t%.2f\t%s", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
     aux = aux->prox;
   }
   //printf("\n%s\t%d\t%.2f\n", aux->dado.nome, aux->dado.matricula, aux->dado.nota);
-  printf("\n%d\t%.2f\t%s\n", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
+  printf("\n%d\t%.2f\t%s", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
   return 1;
 }

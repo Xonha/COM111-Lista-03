@@ -20,18 +20,18 @@ int tamanho_lista(Lista *li);
 int lista_vazia(Lista *li);
 
 // funções para inserção de elementos da lista
-int inserir_lista_inicio(Lista *li, Aluno dado);
-int inserir_lista_final(Lista *li, Aluno al);
-int inserir_lista_ordenada(Lista *li, Aluno al);
+int inserir_lista_inicio(Lista *li);
+int inserir_lista_final(Lista *li);
+int inserir_lista_ordenada(Lista *li);
 
 // funções para remoção de elementos da lista
 int remover_lista_inicio(Lista *li);
 int remover_lista_final(Lista *li);
-int remover_lista_matricula(Lista *li, Aluno al);
+int remover_lista_matricula(Lista *li);
 
 // funções para buscar elementos na lista
-int buscar_lista_posicao(Lista *li, int pos, Aluno *al);
-int buscar_lista_dado(Lista *li, Aluno al, int *pos);
+int buscar_lista_posicao(Lista *li);
+int buscar_lista_matricula(Lista *li);
 
 int imprimir_lista(Lista *li);
 
