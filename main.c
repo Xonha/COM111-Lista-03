@@ -8,6 +8,7 @@ int main(void)
   // no início a lista está vazia, logo, o ponteiro inicio tem valor NULL
   //o ponteiro inicio conterá o endereço do primeiro elemento da lista
   Lista *li = NULL;
+  Lista *li2 = NULL;
   int opcao, ok, pos;
   Aluno *al;
 
@@ -92,6 +93,37 @@ int main(void)
       break;
 
     case 11:
+      ok = imprimir_lista(li); // imprime a lista
+      if (ok == 0)
+        printf("\nLista não encontrada!");
+      break;
+
+    case 12:
+      li2 = remover_matriculas_repetidas(li); // imprime a lista
+      if (li2 == 0)
+        printf("\nLista não encontrada!");
+      imprimir_lista(li2);
+      break;
+
+    case 13:
+      ok = imprimir_lista(li); // imprime a lista
+      if (ok == 0)
+        printf("\nLista não encontrada!");
+      break;
+
+    case 14:
+      ok = imprimir_lista(li); // imprime a lista
+      if (ok == 0)
+        printf("\nLista não encontrada!");
+      break;
+
+    case 15:
+      ok = imprimir_lista(li); // imprime a lista
+      if (ok == 0)
+        printf("\nLista não encontrada!");
+      break;
+
+    case 16:
       ok = imprimir_lista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");

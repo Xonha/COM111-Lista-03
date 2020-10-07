@@ -8,8 +8,9 @@ typedef struct elemento Elemento;
 typedef struct aluno Aluno;
 typedef Elemento *Lista;
 
-int criar_dado(int *dado);
+// funcoes adicionadas TAREFA
 Aluno *criar_aluno(void);
+Lista *remover_matriculas_repetidas(Lista *li);
 
 // funções para alocar e desalocar memória
 Lista *criar_lista(void);

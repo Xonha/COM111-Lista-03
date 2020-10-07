@@ -1,5 +1,3 @@
-// TAD para Lista Dinâmica Encadeada baseado no livro "Estrutura de dados descomplicada em lingugem C (André Backes)"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaEncadeada.h"
@@ -16,14 +14,6 @@ struct elemento
   Aluno dado;
   Elemento *prox;
 };
-
-int criar_dado(int *dado)
-{
-  printf("\nDigite um valor: ");
-  scanf("%d", dado);
-
-  return 1;
-}
 
 Aluno *criar_aluno()
 {
@@ -387,10 +377,6 @@ int buscar_lista_posicao(Lista *li)
 
 int buscar_lista_matricula(Lista *li)
 {
-  // verifica se a lista foi criada corretamente
-  if (li == NULL || (*li) == NULL)
-    return 0;
-
   printf("\nMatricula do aluno a ser buscado: ");
   int matricula;
   scanf("%d", &matricula);
@@ -405,8 +391,7 @@ int buscar_lista_matricula(Lista *li)
     i++;
   }
 
-  // verifica se elemento não foi encontrado
-  if (no == NULL)
+  if (no == NULL) // verifica se elemento não foi encontrado
     return 0;
 
   printf("\nAluno de matricula %d: ", matricula);
@@ -436,3 +421,67 @@ int imprimir_lista(Lista *li)
   printf("\n%d\t%.2f\t%s", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
   return 1;
 }
+
+Lista *remover_matriculas_repetidas(Lista *li)
+{
+  Elemento *copia = *li;
+
+  return li;
+}
+
+/*
+Lista *remover_matriculas_repetidas(Lista *li)
+{
+  Lista *li2 = NULL;
+  li2 = criar_lista();
+
+  *li2 = *li;
+
+  Elemento *no = *li2;
+
+  do
+  {
+    no = no->prox;
+  } while (no != NULL);
+
+  return li2;
+} 
+
+Elemento *remove_duplicados(Elemento *agenda)
+{
+  Elemento *a;
+  Elemento *p;
+  Elemento *q;
+
+  for (p = agenda; p != NULL; p = p->prox)
+  {
+    a = NULL; //a cada varrimento a começa a NULL
+
+    for (q = p->prox; q != NULL;)
+    { //sem incremento
+      if (0 == strcmp(p->info.nome, q->info.nome))
+      { //teste de igual
+        if (a == NULL)
+        { //remove do inicio
+          p->prox = q->prox;
+        }
+        else
+        { //ou do meio/fim
+          a->prox = q->prox;
+        }
+
+        Elemento *remover = q;
+        q = q->prox;
+        free(remover);
+      }
+      else
+      { //so atualiza o anterior quando não é igual
+        a = q;
+        q = q->prox;
+      }
+    }
+  }
+
+  return agenda;
+}
+*/
