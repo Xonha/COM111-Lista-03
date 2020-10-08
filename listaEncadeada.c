@@ -72,6 +72,14 @@ int liberarLista(Lista *li)
   return 1;
 }
 
+int tamanhoListaRecursiva(Lista li)
+{
+  if (li == NULL)
+    return 0;
+
+  return 1 + contador(li->prox);
+}
+
 int tamanhoLista(Lista *li)
 {
   if (li == NULL) // verifica se a lista existe

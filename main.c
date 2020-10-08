@@ -118,9 +118,8 @@ int main(void)
       break;
 
     case 16:
-      ok = imprimirLista(li); // imprime a lista
-      if (ok == 0)
-        printf("\nLista não encontrada!");
+      ok = tamanhoListaRecursiva(*li); // Calcula o tamanho da lista
+      printf("\nTamanho da lista: %i", ok);
       break;
 
     default:

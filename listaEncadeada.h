@@ -7,7 +7,10 @@ typedef struct aluno Aluno;
 typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
-void preencherAluno(Aluno *al);
+void preencherAluno(Aluno *al);              //  A
+int tamanhoListaRecursiva(Elemento *cabeca); //  5
+
+void tamanho(Lista *cabeca, Aluno novodado);
 
 // funções para alocar e desalocar memória
 Aluno *alocarAluno(void);
