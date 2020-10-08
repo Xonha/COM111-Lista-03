@@ -5,16 +5,11 @@
 
 int main(void)
 {
-  // no início a lista está vazia, logo, o ponteiro inicio tem valor NULL
-  //o ponteiro inicio conterá o endereço do primeiro elemento da lista
   Lista *li = NULL;
-  Lista *li2 = NULL;
-  int opcao, ok, pos;
-  Aluno *al;
+  int opcao, ok;
 
-  // menu de opções para execuções de operações sobre a lista
   do
-  {
+  { // menu de opções para execuções de operações sobre a lista
     printf("\n\nMenu de opções");
     printf("\n00 - Sair");
     printf("\n01 - Criar lista");
@@ -35,102 +30,101 @@ int main(void)
     {
 
     case 1:
-      li = criar_lista(); // criar lista
+      li = alocarLista(); // criar lista
       break;
 
     case 2:
-      ok = liberar_lista(li); // liberar lista
+      ok = liberarLista(li); // liberar lista
       if (ok == 0)
         printf("\nLista não liberada!");
       break;
 
     case 3:
-      ok = inserir_lista_inicio(li); // inserir elemento no início
+      ok = inserirInicio(li); // inserir elemento no início
       if (ok == 0)
         printf("\nFalha na inserção!");
       break;
 
     case 4:
-      ok = inserir_lista_final(li); // inserir elemento no final
+      ok = inserirFinal(li); // inserir elemento no final
       if (ok == 0)
         printf("\nFalha na inserção!");
       break;
 
     case 5:
-      ok = inserir_lista_ordenada(li); // inserir elemento de forma ordenada
+      ok = inserirOrdenada(li); // inserir elemento de forma ordenada
       if (ok == 0)
         printf("\nFalha na inserção!");
       break;
 
     case 6:
-      ok = remover_lista_inicio(li); // remover elemento do início
+      ok = removerInicio(li); // remover elemento do início
       if (ok == 0)
         printf("\nFalha na remoção!");
       break;
 
     case 7:
-      ok = remover_lista_final(li); // remover elemento do final
+      ok = removerFinal(li); // remover elemento do final
       if (ok == 0)
         printf("\nFalha na remoção!");
       break;
 
     case 8:
-      ok = remover_lista_matricula(li); // remover elemento do meio
+      ok = removerMatricula(li); // remover elemento do meio
       if (ok == 0)
         printf("\nFalha na remoção!");
       break;
 
     case 9:
-      ok = buscar_lista_posicao(li); // busca elemento pela posicao
+      ok = buscarPosicao(li); // busca elemento pela posicao
       if (ok == 0)
         printf("\nPosição não existe!");
       break;
 
     case 10:
-      ok = buscar_lista_matricula(li); // busca elemento pelo dado
+      ok = buscarMatricula(li); // busca elemento pelo dado
       if (ok == 0)
         printf("\nAluno não encontrado!");
       break;
 
     case 11:
-      ok = imprimir_lista(li); // imprime a lista
+      ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");
       break;
 
     case 12:
-      li2 = remover_matriculas_repetidas(li); // imprime a lista
-      if (li2 == 0)
+      ok = imprimirLista(li); // imprime a lista
+      if (ok == 0)
         printf("\nLista não encontrada!");
-      imprimir_lista(li2);
       break;
 
     case 13:
-      ok = imprimir_lista(li); // imprime a lista
+      ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");
       break;
 
     case 14:
-      ok = imprimir_lista(li); // imprime a lista
+      ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");
       break;
 
     case 15:
-      ok = imprimir_lista(li); // imprime a lista
+      ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");
       break;
 
     case 16:
-      ok = imprimir_lista(li); // imprime a lista
+      ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
         printf("\nLista não encontrada!");
       break;
 
     default:
-      liberar_lista(li);
+      liberarLista(li);
       printf("\nFinalizando...\n\n");
       break;
     }
