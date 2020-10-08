@@ -106,12 +106,10 @@ int inserirInicio(Lista *li)
   if (li == NULL) // verifica se a lista existe
     return 0;
 
-  Aluno *al; // cria um aluno novo
-  al = alocarAluno();
+  Aluno *al = alocarAluno(); // cria um aluno novo
   preencherAluno(al);
 
-  Elemento *no; // cria um elemento novo
-  no = alocarElemento();
+  Elemento *no = alocarElemento(); // cria um elemento novo
 
   if (no == NULL)
     return 0; //  Verifica alocação
@@ -132,14 +130,12 @@ int inserirFinal(Lista *li)
   if (li == NULL) // verifica se a lista existe
     return 0;
 
-  Aluno *al; // cria um aluno novo
-  al = alocarAluno();
+  Aluno *al = alocarAluno(); // cria um aluno novo
   preencherAluno(al);
 
-  Elemento *no; // cria um elemento novo
-  no = alocarElemento();
+  Elemento *no = alocarElemento(); // cria um elemento novo
 
-  if (no == NULL)
+  if (no == NULL) // verifica se o no foi criado
     return 0;
 
   // atribui valores ao elemento novo
@@ -172,12 +168,10 @@ int inserirOrdenada(Lista *li)
   if (li == NULL) // verifica se a lista existe
     return 0;
 
-  Aluno *al; // cria um aluno novo
-  al = alocarAluno();
+  Aluno *al = alocarAluno(); // cria um aluno novo
   preencherAluno(al);
 
-  Elemento *no; // cria um elemento novo
-  no = alocarElemento();
+  Elemento *no = alocarElemento(); // cria um elemento novo
 
   if (no == NULL)
     return 0;
