@@ -77,7 +77,7 @@ int tamanhoListaRecursiva(Lista li)
   if (li == NULL)
     return 0;
 
-  return 1 + contador(li->prox);
+  return 1 + tamanhoListaRecursiva(li->prox);
 }
 
 int tamanhoLista(Lista *li)
@@ -378,4 +378,39 @@ int imprimirLista(Lista *li)
   printf("\n%d\t%.2f\t%s", aux->dado.matricula, aux->dado.nota, aux->dado.nome);
 
   return 1;
+}
+
+Lista *clonarLista(Lista *li)
+{
+
+  Lista *lista = alocarLista();
+
+  for (Elemento *copia = *li; copia != NULL; copia = copia->prox)
+  {
+
+    Elemento *no = alocarElemento();
+    Aluno *al = alocarAluno();
+
+    al->matricula = copia->dado.matricula;
+    al->nota = copia->dado.nota;
+
+    no->dado = *al;
+    no->prox = NULL;
+
+    if ((*lista) == NULL)
+      *lista = no;
+    else
+    {
+      Elemento *aux;
+      aux = *lista;
+
+      while (aux->prox != NULL)
+      {
+        aux = aux->prox;
+      }
+      aux->prox = no;
+    }
+  }
+
+  return lista;
 }

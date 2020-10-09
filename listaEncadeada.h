@@ -10,7 +10,9 @@ typedef Elemento *Lista;
 void preencherAluno(Aluno *al);              //  A
 int tamanhoListaRecursiva(Elemento *cabeca); //  5
 
-void tamanho(Lista *cabeca, Aluno novodado);
+Lista *clonarLista(Lista *li);
+
+int tamanhoListaRecursiva(Lista li);
 
 // funções para alocar e desalocar memória
 Aluno *alocarAluno(void);
