@@ -2,10 +2,17 @@
 #include <stdlib.h>
 #include "Lista/listaEncadeada.h"
 
+#include "Lista/listaEncadeada.c"
+#include "Elemento/element.h"
+#include "Elemento/element.c"
+#include "Aluno/aluno.h"
+#include "Aluno/aluno.c"
+
 int main(void)
 {
   Lista *li = NULL;
   Lista *li2 = NULL;
+  Lista *li3 = NULL;
   int opcao, ok, valor;
 
   do
@@ -121,9 +128,12 @@ int main(void)
       break;
 
     case 13:
-      ok = imprimirLista(li); // imprime a lista
+      li3 = removerRepetidos(li); // imprime a lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
+
+      imprimirLista(li3);
+
       break;
 
     case 14:
@@ -145,7 +155,7 @@ int main(void)
       break;
 
     default:
-      printf("Opcao invalida!");
+      printf("\nOpcao invalida!");
       break;
     }
   } while (opcao != 0);
