@@ -6,12 +6,11 @@
 // bibliotecas do projeto
 #include "listaEncadeada.h"
 
-
 int criar_dado(int *dado);
 
-
 // funcao principal
-int main(void) {
+int main(void)
+{
 
   // no início a lista está vazia, logo, o ponteiro inicio tem valor NULL
   //o ponteiro inicio conterá o endereço do primeiro elemento da lista
@@ -37,187 +36,214 @@ int main(void) {
     printf("\nOpção: ");
     scanf("%d", &opcao);
 
-    switch(opcao){
+    switch (opcao)
+    {
 
-      case 1:
+    case 1:
 
-        // criar lista
-        li = criar_lista();
+      // criar lista
+      li = criar_lista();
 
-        if(li != NULL){
-          printf("\n Lista criada com sucesso!");
-        }else{
-          printf("\n Lista não criada!");
-        }
-        break;
+      if (li != NULL)
+      {
+        printf("\n Lista criada com sucesso!");
+      }
+      else
+      {
+        printf("\n Lista não criada!");
+      }
+      break;
 
+    case 2:
 
-      case 2:
+      // liberar lista
+      ok = liberar_lista(li);
 
-        // liberar lista
-        ok = liberar_lista(li);
+      if (ok)
+      {
+        printf("\n Lista liberada com sucesso!");
+      }
+      else
+      {
+        printf("\n Lista não liberada!");
+      }
+      break;
 
-        if(ok){
-          printf("\n Lista liberada com sucesso!");
-        }else{
-          printf("\n Lista não liberada!");
-        }
-        break;
+    case 3:
 
-      case 3:
+      // inserir elemento no início
+      ok = criar_dado(&dado);
+      ok = inserir_lista_inicio(li, dado);
 
-        // inserir elemento no início
-        ok = criar_dado(&dado);
-        ok = inserir_lista_inicio(li, dado);
+      if (ok == 1)
+      {
+        printf("\n Inserção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na inserção!");
+      }
 
-        if(ok == 1){
-          printf("\n Inserção realizada com sucesso!");
-        }else{
-          printf("\n Falha na inserção!");
-        }
+      break;
 
-        break;
+    case 4:
 
-      case 4:
+      // inserir elemento no final
+      ok = criar_dado(&dado);
+      ok = inserir_lista_final(li, dado);
 
-        // inserir elemento no final
-        ok = criar_dado(&dado);
-        ok = inserir_lista_final(li, dado);
+      if (ok == 1)
+      {
+        printf("\n Inserção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na inserção!");
+      }
 
-        if(ok == 1){
-          printf("\n Inserção realizada com sucesso!");
-        }else{
-          printf("\n Falha na inserção!");
-        }
+      break;
 
-        break;
+    case 5:
 
-      case 5:
+      // inserir elemento de forma ordenada
+      ok = criar_dado(&dado);
+      ok = inserir_lista_ordenada(li, dado);
 
-        // inserir elemento de forma ordenada
-        ok = criar_dado(&dado);
-        ok = inserir_lista_ordenada(li, dado);
+      if (ok == 1)
+      {
+        printf("\n Inserção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na inserção!");
+      }
 
-        if(ok == 1){
-          printf("\n Inserção realizada com sucesso!");
-        }else{
-          printf("\n Falha na inserção!");
-        }
+      break;
 
-        break;
+    case 6:
 
-      case 6:
+      // remover elemento do início
+      ok = remover_lista_inicio(li);
 
-        // remover elemento do início
-        ok = remover_lista_inicio(li);
+      if (ok == 1)
+      {
+        printf("\n Remoção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na remoção!");
+      }
+      break;
 
-        if(ok == 1){
-          printf("\n Remoção realizada com sucesso!");
-        }else{
-          printf("\n Falha na remoção!");
-        }
-        break;
+    case 7:
 
-      case 7:
+      // remover elemento do final
+      ok = remover_lista_final(li);
 
-        // remover elemento do final
-        ok = remover_lista_final(li);
+      if (ok == 1)
+      {
+        printf("\n Remoção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na remoção!");
+      }
+      break;
 
-        if(ok == 1){
-          printf("\n Remoção realizada com sucesso!");
-        }else{
-          printf("\n Falha na remoção!");
-        }
-        break;
+    case 8:
 
-      case 8:
+      // remover elemento do meio
+      printf("\n Número a ser removido: ");
+      scanf("%d", &dado);
 
-        // remover elemento do meio
-        printf("\n Número a ser removido: ");
-        scanf("%d", &dado);
+      ok = remover_lista_meio(li, dado);
 
-        ok = remover_lista_meio(li, dado);
+      if (ok == 1)
+      {
+        printf("\n Remoção realizada com sucesso!");
+      }
+      else
+      {
+        printf("\n Falha na remoção!");
+      }
+      break;
 
-        if(ok == 1){
-          printf("\n Remoção realizada com sucesso!");
-        }else{
-          printf("\n Falha na remoção!");
-        }
-        break;
+    case 9:
 
-      case 9:
+      // busca elemento pela posicao
+      printf("\n Posição do elemento a ser buscado: ");
+      scanf("%d", &pos);
 
-        // busca elemento pela posicao
-        printf("\n Posição do elemento a ser buscado: ");
-        scanf("%d", &pos);
+      ok = buscar_lista_posicao(li, pos, &dado);
 
-        ok = buscar_lista_posicao(li, pos, &dado);
+      if (ok)
+      {
+        printf("\n Busca realizada com sucesso!");
+        printf("\n Elemento da %dª posição: ", pos);
+        printf("%d", dado);
+      }
+      else
+      {
+        printf("\n Posição não existe!");
+      }
 
-        if(ok){
-          printf("\n Busca realizada com sucesso!");
-          printf("\n Elemento da %dª posição: ", pos);
-          printf("%d", dado);
-        }else{
-          printf("\n Posição não existe!");
-        }
+      break;
 
-        break;
+    case 10:
 
-      case 10:
+      // busca elemento pelo dado
+      printf("\n Código do produto a ser buscado: ");
+      scanf("%d", &dado);
 
-        // busca elemento pelo dado
-        printf("\n Código do produto a ser buscado: ");
-        scanf("%d", &dado);
+      ok = buscar_lista_dado(li, dado, &pos);
 
-        ok = buscar_lista_dado(li, dado, &pos);
+      if (ok)
+      {
+        printf("\n Busca realizada com sucesso!");
+        printf("\n Elemento da %dª posição: ", pos);
+        printf("%d", dado);
+      }
+      else
+      {
+        printf("\n Elemento não encontrado!");
+      }
 
-        if(ok){
-          printf("\n Busca realizada com sucesso!");
-          printf("\n Elemento da %dª posição: ", pos);
-          printf("%d", dado);
-        }else{
-          printf("\n Elemento não encontrado!");
-        }
+      break;
 
-        break;
+    case 11:
 
-      case 11:
+      // imprime a lista
+      printf("\n Lista encadeada: ");
+      ok = imprimir_lista(li);
 
-        // imprime a lista
-        printf("\n Lista encadeada: ");
-        ok = imprimir_lista(li);
+      if (!ok)
+      {
+        printf("\n Lista não encontrada!");
+      }
 
-        if(!ok){
-          printf("\n Lista não encontrada!");
-        }
+      break;
 
-        break;
+    case 12:
 
-      case 12:
+      // libera memória e finaliza programa
+      liberar_lista(li);
+      printf("\nFinalizando...");
+      break;
 
-        // libera memória e finaliza programa
-        liberar_lista(li);
-        printf("\nFinalizando...");
-        break;
-
-      default:
-        printf("\nOpção inválida!");
-        break;
+    default:
+      printf("\nOpção inválida!");
+      break;
     }
 
-  }while(opcao != 12);
+  } while (opcao != 12);
 
   return 0;
 }
 
-
-
-
-
 int criar_dado(int *dado)
 {
-    printf("\nDigite um valor: ");
-    scanf("%d", dado);
+  printf("\nDigite um valor: ");
+  scanf("%d", dado);
 
-    return 1;
+  return 1;
 }

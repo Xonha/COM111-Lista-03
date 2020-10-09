@@ -1,15 +1,14 @@
 #ifndef _LISTA_ENCADEADA
 #define _LISTA_ENCADEADA
 
+#include "../Aluno/aluno.h"
+#include "../Elemento/element.h"
+
 //typedef struct elemento* Lista;
-typedef struct elemento Elemento;
-typedef struct aluno Aluno;
 typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
-void preencherAluno(Aluno *al);              //  A
 int tamanhoListaRecursiva(Elemento *cabeca); //  5
-
 void tamanho(Lista *cabeca, Aluno novodado);
 
 // funções para alocar e desalocar memória
@@ -36,6 +35,7 @@ int removerMatricula(Lista *li);
 int buscarPosicao(Lista *li);
 int buscarMatricula(Lista *li);
 
+// Imprimir Elementos na lista
 int imprimirLista(Lista *li);
 
 #endif

@@ -1,41 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaEncadeada.h"
 
-struct aluno
-{
-  int matricula;
-  char nome[30];
-  float nota;
-};
-
-struct elemento
-{
-  Aluno dado;
-  Elemento *prox;
-};
-
-void preencherAluno(Aluno *al)
-{
-  printf("\nNome: ");
-  scanf("%s", al->nome);
-  printf("Matricula: ");
-  scanf("%d", &al->matricula);
-  printf("Nota: ");
-  scanf("%f", &al->nota);
-}
-
-Aluno *alocarAluno()
-{
-  Aluno *al = (Aluno *)malloc(sizeof(Aluno));
-  return al;
-}
-
-Elemento *alocarElemento()
-{
-  Elemento *no = (Elemento *)malloc(sizeof(Elemento));
-  return no;
-}
+#include "../Lista/listaEncadeada.h"
+#include "../Aluno/aluno.h"
+#include "../Elemento/element.h"
 
 Lista *alocarLista()
 {
@@ -77,7 +45,7 @@ int tamanhoListaRecursiva(Lista li)
   if (li == NULL)
     return 0;
 
-  return 1 + contador(li->prox);
+  return 1 + tamanhoListaRecursiva(li->prox);
 }
 
 int tamanhoLista(Lista *li)
