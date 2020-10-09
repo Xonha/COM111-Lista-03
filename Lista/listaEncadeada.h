@@ -1,24 +1,19 @@
 #ifndef _LISTA_ENCADEADA
 #define _LISTA_ENCADEADA
 
+#include "../Aluno/aluno.h"
+#include "../Elemento/element.h"
+
 //typedef struct elemento* Lista;
-typedef struct elemento Elemento;
-typedef struct aluno Aluno;
 typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
-void preencherAluno(Aluno *al);              //  A
-Lista *inverterLista(Lista *li);             //  3
-int tamanhoListaRecursiva(Elemento *cabeca); //  5
-
+Lista *alocarLista();
+Lista *inverterLista(Lista *li); //  3
 Lista *clonarLista(Lista *li);
-
 int tamanhoListaRecursiva(Lista li);
 
 // funções para alocar e desalocar memória
-Aluno *alocarAluno(void);
-Lista *alocarLista(void);
-Elemento *alocarElemento(void);
 int liberarLista(Lista *li);
 
 // funções para obter informações da lista
@@ -39,6 +34,7 @@ int removerMatricula(Lista *li);
 int buscarPosicao(Lista *li);
 int buscarMatricula(Lista *li);
 
+// Imprimir Elementos na lista
 int imprimirLista(Lista *li);
 
 #endif
