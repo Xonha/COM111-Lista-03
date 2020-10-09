@@ -410,3 +410,23 @@ Lista *inverterLista(Lista *li)
 
   return li2;
 }
+
+Lista *removerRepetidos(Lista *li)
+{
+  Lista *lista = clonarLista(li);
+
+  for (Elemento *no1 = *li; no1 != NULL; no1 = no1->prox)
+  {
+    for (Elemento *no2 = no1->prox; no2 != NULL; no2 = no2->prox)
+    {
+      if (no1->dado.matricula == no2->dado.matricula)
+      {
+        no1->prox = no2->prox;
+        removerMatricula(lista, no2->dado.matricula);
+      }
+    }
+  }
+
+  return lista;
+}
+
