@@ -6,7 +6,7 @@ int main(void)
 {
   Lista *li = NULL;
   Lista *li2 = NULL;
-  int opcao, ok;
+  int opcao, ok, valor;
 
   do
   { // menu de opções para execuções de operações sobre a lista
@@ -23,6 +23,10 @@ int main(void)
     switch (opcao)
     {
 
+    case 0:
+      liberarLista(li);
+      printf("\nFinalizando...\n\n");
+      break;
     case 1:
       li = alocarLista(); // criar lista
 
@@ -81,7 +85,11 @@ int main(void)
       break;
 
     case 8:
-      ok = removerMatricula(li); // remover elemento do meio
+      printf("\nMatricula a ser removido: ");
+      scanf("%d", &valor);
+
+      ok = removerMatricula(li, valor); // remover elemento do meio
+
       if (ok == 1)
         printf("\nRemocao realizada com sucesso!");
       else
@@ -137,8 +145,7 @@ int main(void)
       break;
 
     default:
-      liberarLista(li);
-      printf("\nFinalizando...\n\n");
+      printf("Opcao invalida!");
       break;
     }
   } while (opcao != 0);

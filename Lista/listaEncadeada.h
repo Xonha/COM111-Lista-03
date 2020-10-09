@@ -29,7 +29,7 @@ int inserirOrdenada(Lista *li);
 // funções para remoção de elementos da lista
 int removerInicio(Lista *li);
 int removerFinal(Lista *li);
-int removerMatricula(Lista *li);
+int removerMatricula(Lista *li, int dado);
 
 // funções para buscar elementos na lista
 int buscarPosicao(Lista *li);

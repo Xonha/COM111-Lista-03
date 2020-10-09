@@ -226,17 +226,13 @@ int removerFinal(Lista *li)
   return 1;
 }
 
-int removerMatricula(Lista *li)
+int removerMatricula(Lista *li, int dado)
 {
   if (li == NULL) // verifica se a lista existe
     return 0;
 
   if ((*li) == NULL) // lista vazia, não remove nada
     return 0;
-
-  printf("\nMatricula a ser removido: ");
-  int dado;
-  scanf("%d", &dado);
 
   Elemento *anterior, *atual;
   atual = *li;
@@ -429,4 +425,3 @@ Lista *removerRepetidos(Lista *li)
 
   return lista;
 }
-
