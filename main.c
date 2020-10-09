@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaEncadeada.c"
 #include "listaEncadeada.h"
 
 int main(void)
