@@ -8,6 +8,7 @@ typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
 void preencherAluno(Aluno *al);              //  A
+Lista *inverterLista(Lista *li);             //  3
 int tamanhoListaRecursiva(Elemento *cabeca); //  5
 
 Lista *clonarLista(Lista *li);

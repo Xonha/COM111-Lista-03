@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "listaEncadeada.c"
 #include "listaEncadeada.h"
 
 int main(void)
 {
   Lista *li = NULL;
+  Lista *li2 = NULL;
   int opcao, ok;
 
   do
@@ -24,47 +26,66 @@ int main(void)
 
     case 1:
       li = alocarLista(); // criar lista
+
+      if (li != NULL)
+        printf("\nLista criada com sucesso!");
+      else
+        printf("\nLista não criada!");
       break;
 
     case 2:
       ok = liberarLista(li); // liberar lista
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nLista liberada com sucesso!");
+      else
         printf("\nLista nao liberada!");
       break;
 
     case 3:
       ok = inserirInicio(li); // inserir elemento no início
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
         printf("\nFalha na insercao!");
       break;
 
     case 4:
       ok = inserirFinal(li); // inserir elemento no final
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
         printf("\nFalha na insercao!");
       break;
 
     case 5:
       ok = inserirOrdenada(li); // inserir elemento de forma ordenada
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
         printf("\nFalha na insercao!");
       break;
 
     case 6:
       ok = removerInicio(li); // remover elemento do início
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
         printf("\nFalha na remocao!");
       break;
 
     case 7:
       ok = removerFinal(li); // remover elemento do final
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
         printf("\nFalha na remocao!");
       break;
 
     case 8:
       ok = removerMatricula(li); // remover elemento do meio
-      if (ok == 0)
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
         printf("\nFalha na remocao!");
       break;
 
@@ -99,13 +120,14 @@ int main(void)
       break;
 
     case 14:
-      ok = imprimirLista(li); // imprime a lista
-      if (ok == 0)
+      li2 = inverterLista(li); // imprime a lista
+      if (!li2)
         printf("\nLista nao encontrada!");
+      imprimirLista(li2);
       break;
 
     case 15:
-      ok = imprimirLista(li); // imprime a lista
+      ok = imprimirLista(li2); // imprime a lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
       break;

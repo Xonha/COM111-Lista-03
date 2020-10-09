@@ -42,12 +42,8 @@ Lista *alocarLista()
   Lista *li = (Lista *)malloc(sizeof(Lista));
 
   if (li != NULL)
-  { // se a lista foi criada corretamente, indica que ela está vazia
     *li = NULL;
-    printf("\nLista criada com sucesso!");
-  }
-  else
-    printf("\nLista não criada!");
+
   return li;
 }
 
@@ -66,8 +62,6 @@ int liberarLista(Lista *li)
   }
 
   free(li); // libera o ponteiro da lista
-
-  printf("\nLista liberada com sucesso!");
 
   return 1;
 }
@@ -128,7 +122,6 @@ int inserirInicio(Lista *li)
 
   // insere elemento no início da lista
   *li = no;
-  printf("\nInserção realizada com sucesso!");
 
   return 1;
 }
@@ -160,13 +153,10 @@ int inserirFinal(Lista *li)
     aux = *li;
 
     while (aux->prox != NULL)
-    {
       aux = aux->prox;
-    }
+
     aux->prox = no;
   }
-
-  printf("\nInserção realizada com sucesso!");
 
   return 1;
 }
@@ -236,8 +226,6 @@ int removerInicio(Lista *li)
   // libera Elemento atual
   free(atual);
 
-  printf("\nRemoção realizada com sucesso!");
-
   return 1;
 }
 
@@ -266,8 +254,6 @@ int removerFinal(Lista *li)
     anterior->prox = atual->prox;
 
   free(atual); //libera Elemento atual
-
-  printf("\nRemoção realizada com sucesso!");
 
   return 1;
 }
@@ -405,12 +391,54 @@ Lista *clonarLista(Lista *li)
       aux = *lista;
 
       while (aux->prox != NULL)
-      {
         aux = aux->prox;
-      }
+
       aux->prox = no;
     }
   }
 
   return lista;
+}
+
+Lista *inverterLista(Lista *li)
+{
+  Lista *lista = clonarLista(li);
+
+  Lista *li2 = alocarLista();
+
+  Elemento *copia = *lista;
+
+  while (copia != NULL)
+  {
+
+    while (copia->prox != NULL)
+      copia = copia->prox;
+
+    Elemento *no = alocarElemento();
+    Aluno *al = alocarAluno();
+
+    al->matricula = copia->dado.matricula;
+    al->nota = copia->dado.nota;
+
+    no->dado = *al;
+    no->prox = NULL;
+
+    if ((*li2) == NULL)
+      *li2 = no;
+    else
+    {
+      Elemento *aux;
+      aux = *li2;
+
+      while (aux->prox != NULL)
+        aux = aux->prox;
+
+      aux->prox = no;
+    }
+
+    removerFinal(lista);
+    copia = *lista;
+  }
+
+  return li2;
 }
