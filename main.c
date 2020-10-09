@@ -5,23 +5,18 @@
 int main(void)
 {
   Lista *li = NULL;
+  Lista *li2 = NULL;
   int opcao, ok;
 
   do
   { // menu de opções para execuções de operações sobre a lista
-    printf("\n\nMenu de opções");
-    printf("\n00 - Sair");
-    printf("\n01 - Criar lista");
-    printf("\n02 - Liberar lista");
-    printf("\n03 - Inserir início");
-    printf("\n04 - Inserir final");
-    printf("\n05 - Inserir ordenado");
-    printf("\n06 - Remover início");
-    printf("\n07 - Remover final");
-    printf("\n08 - Remover matricula");
-    printf("\n09 - Buscar posicao");
-    printf("\n10 - Buscar matricula");
-    printf("\n11 - Imprimir");
+    printf("\n\n################# MENU DE OPCOES #################");
+    printf("\n 0 - Sair\t\t\t\t\t 1 - Criar lista");
+    printf("\n 2 - Liberar lista\t\t\t 3 - Inserir início");
+    printf("\n 4 - Inserir final\t\t\t 5 - Inserir ordenado");
+    printf("\n 6 - Remover início\t\t\t 7 - Remover final");
+    printf("\n 8 - Remover matricula\t\t 9 - Buscar posicao");
+    printf("\n10 - Buscar matricula\t\t11 - Imprimir");
     printf("\nOpção: ");
     scanf("%d", &opcao);
 
@@ -30,90 +25,110 @@ int main(void)
 
     case 1:
       li = alocarLista(); // criar lista
+
+      if (li != NULL)
+        printf("\nLista criada com sucesso!");
+      else
+        printf("\nLista não criada!");
       break;
 
     case 2:
       ok = liberarLista(li); // liberar lista
-      if (ok == 0)
-        printf("\nLista não liberada!");
+      if (ok == 1)
+        printf("\nLista liberada com sucesso!");
+      else
+        printf("\nLista nao liberada!");
       break;
 
     case 3:
       ok = inserirInicio(li); // inserir elemento no início
-      if (ok == 0)
-        printf("\nFalha na inserção!");
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
+        printf("\nFalha na insercao!");
       break;
 
     case 4:
       ok = inserirFinal(li); // inserir elemento no final
-      if (ok == 0)
-        printf("\nFalha na inserção!");
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
+        printf("\nFalha na insercao!");
       break;
 
     case 5:
       ok = inserirOrdenada(li); // inserir elemento de forma ordenada
-      if (ok == 0)
-        printf("\nFalha na inserção!");
+      if (ok == 1)
+        printf("\nInsercao realizada com sucesso!");
+      else
+        printf("\nFalha na insercao!");
       break;
 
     case 6:
       ok = removerInicio(li); // remover elemento do início
-      if (ok == 0)
-        printf("\nFalha na remoção!");
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
+        printf("\nFalha na remocao!");
       break;
 
     case 7:
       ok = removerFinal(li); // remover elemento do final
-      if (ok == 0)
-        printf("\nFalha na remoção!");
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
+        printf("\nFalha na remocao!");
       break;
 
     case 8:
       ok = removerMatricula(li); // remover elemento do meio
-      if (ok == 0)
-        printf("\nFalha na remoção!");
+      if (ok == 1)
+        printf("\nRemocao realizada com sucesso!");
+      else
+        printf("\nFalha na remocao!");
       break;
 
     case 9:
       ok = buscarPosicao(li); // busca elemento pela posicao
       if (ok == 0)
-        printf("\nPosição não existe!");
+        printf("\nPosição nao existe!");
       break;
 
     case 10:
       ok = buscarMatricula(li); // busca elemento pelo dado
       if (ok == 0)
-        printf("\nAluno não encontrado!");
+        printf("\nAluno nao encontrado!");
       break;
 
     case 11:
       ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
-        printf("\nLista não encontrada!");
+        printf("\nLista nao encontrada!");
       break;
 
     case 12:
       ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
-        printf("\nLista não encontrada!");
+        printf("\nLista nao encontrada!");
       break;
 
     case 13:
       ok = imprimirLista(li); // imprime a lista
       if (ok == 0)
-        printf("\nLista não encontrada!");
+        printf("\nLista nao encontrada!");
       break;
 
     case 14:
-      ok = imprimirLista(li); // imprime a lista
-      if (ok == 0)
-        printf("\nLista não encontrada!");
+      li2 = inverterLista(li); // imprime a lista
+      if (!li2)
+        printf("\nLista nao encontrada!");
+      imprimirLista(li2);
       break;
 
     case 15:
-      ok = imprimirLista(li); // imprime a lista
+      ok = imprimirLista(li2); // imprime a lista
       if (ok == 0)
-        printf("\nLista não encontrada!");
+        printf("\nLista nao encontrada!");
       break;
 
     case 16:

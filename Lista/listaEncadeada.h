@@ -8,13 +8,12 @@
 typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
-int tamanhoListaRecursiva(Elemento *cabeca); //  5
-void tamanho(Lista *cabeca, Aluno novodado);
+Lista *alocarLista();
+Lista *inverterLista(Lista *li); //  3
+Lista *clonarLista(Lista *li);
+int tamanhoListaRecursiva(Lista li);
 
 // funções para alocar e desalocar memória
-Aluno *alocarAluno(void);
-Lista *alocarLista(void);
-Elemento *alocarElemento(void);
 int liberarLista(Lista *li);
 
 // funções para obter informações da lista
