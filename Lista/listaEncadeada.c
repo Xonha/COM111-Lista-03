@@ -404,6 +404,8 @@ Lista *inverterLista(Lista *li)
     copia = *lista;
   }
 
+  liberarLista(lista);
+
   return li2;
 }
 
@@ -434,4 +436,46 @@ Lista *removerRepetidos(Lista *li)
   }
 
   return lista;
+}
+
+void verificarOrdenacao(Lista *li)
+{
+  int a, b;
+  a = verificarDecrescente(li);
+  b = verificarCrescente(li);
+
+  if (a == 0 && b == 0)
+    printf("\nLista NAO Ordenada!");
+  else
+    printf("\nLista Ordenada!");
+}
+
+int verificarDecrescente(Lista *li) // Maior -> Menor
+{
+  for (Elemento *p = *li; p != NULL; p = p->prox)
+  {
+    for (Elemento *q = p->prox; q != NULL; q = q->prox)
+    {
+      if (p->dado.matricula < q->dado.matricula)
+        return 0;
+      else // se p >= q
+        continue;
+    }
+  }
+  return 1;
+}
+
+int verificarCrescente(Lista *li)
+{
+  for (Elemento *p = *li; p != NULL; p = p->prox)
+  {
+    for (Elemento *q = p->prox; q != NULL; q = q->prox)
+    {
+      if (p->dado.matricula > q->dado.matricula)
+        return 0;
+      else // se p >= q
+        continue;
+    }
+  }
+  return 1;
 }

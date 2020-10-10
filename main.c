@@ -131,23 +131,21 @@ int main(void)
       break;
 
     case 13:
-      li3 = removerRepetidos(li); // imprime a lista
+      li3 = removerRepetidos(li); // remove itens repetidos da lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
       imprimirLista(li3);
       break;
 
     case 14:
-      li2 = inverterLista(li); // imprime a lista
+      li2 = inverterLista(li); // inverte a lista
       if (!li2)
         printf("\nLista nao encontrada!");
       imprimirLista(li2);
       break;
 
     case 15:
-      ok = imprimirLista(li2); // imprime a lista
-      if (ok == 0)
-        printf("\nLista nao encontrada!");
+      verificarOrdenacao(li); // verifica se a lista esta ordenada
       break;
 
     case 16:
