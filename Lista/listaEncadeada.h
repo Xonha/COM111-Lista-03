@@ -8,10 +8,10 @@
 typedef Elemento *Lista;
 
 // funcoes adicionadas TAREFA
-Lista *removerRepetidos(Lista *li); // 2
-Lista *inverterLista(Lista *li);    //  3
-Lista *clonarLista(Lista *li);
+Lista *removerRepetidos(Lista *li);  // 2
+Lista *inverterLista(Lista *li);     // 3
 int tamanhoListaRecursiva(Lista li); // 5
+Lista *clonarLista(Lista *li);       // Extra
 
 // funções para alocar e desalocar memória
 Lista *alocarLista();
