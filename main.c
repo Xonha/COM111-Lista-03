@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Lista/listaEncadeada.h"
-
-#include "Lista/listaEncadeada.c"
-#include "Elemento/element.h"
-#include "Elemento/element.c"
-#include "Aluno/aluno.h"
-#include "Aluno/aluno.c"
+#include "listaEncadeada.h"
+#include "listaEncadeada.c"
 
 int main(void)
 {
