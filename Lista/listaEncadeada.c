@@ -410,15 +410,35 @@ Lista *inverterLista(Lista *li)
 Lista *removerRepetidos(Lista *li)
 {
   Lista *lista = clonarLista(li);
+  printf("1 ");
 
-  for (Elemento *no1 = *li; no1 != NULL; no1 = no1->prox)
+  for (Elemento *p = *lista; p != NULL; p = p->prox)
   {
-    for (Elemento *no2 = no1->prox; no2 != NULL; no2 = no2->prox)
+    printf("2 ");
+
+    for (Elemento *q = p->prox; q != NULL; q = q->prox)
     {
-      if (no1->dado.matricula == no2->dado.matricula)
+      printf("4 ");
+      Elemento *r = q->prox;
+
+      if (p->dado.matricula == q->dado.matricula)
       {
-        no1->prox = no2->prox;
-        removerMatricula(lista, no2->dado.matricula);
+        printf("3 ");
+        if (q->prox != NULL && p->prox == q)
+        {
+          p->prox = q->prox;
+        }
+
+        Elemento *aux = q;
+        free(aux);
+      }
+      else if (r == NULL)
+        continue;
+      else if (r->dado.matricula == p->dado.matricula)
+      {
+        printf("5 ");
+        q->prox = r->prox;
+        free(r);
       }
     }
   }
