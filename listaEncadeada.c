@@ -511,3 +511,40 @@ int verificarCrescente(Lista *li)
   }
   return 1;
 }
+
+Lista *concatenarListas(Lista *l1, Lista *l2)
+{
+  Lista *l3 = clonarLista(l1);
+
+  if (l3 == NULL)
+    return 0;
+
+  for (Elemento *item = *l2; item != NULL; item = item->prox)
+  {
+
+    Elemento *no = alocarElemento();
+
+    if (no == NULL)
+      return 0;
+
+    no->dado = item->dado;
+    no->prox = NULL;
+
+    // se a lista estiver vazia, insere no início da lista
+    if ((*l3) == NULL)
+      *l3 = item;
+    else
+    {
+      // senão percorre a lista até o fim e insere no final
+      Elemento *aux;
+      aux = *l3;
+
+      while (aux->prox != NULL)
+        aux = aux->prox;
+
+      aux->prox = item;
+    }
+  }
+
+  return l3;
+}

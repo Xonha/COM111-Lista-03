@@ -33,6 +33,7 @@ int listaVazia(Lista *li);
 int inserirInicio(Lista *li);
 int inserirFinal(Lista *li);
 int inserirOrdenada(Lista *li);
+Lista *concatenarListas(Lista *l1, Lista *l2);
 
 // funções para remoção de elementos da lista
 int removerInicio(Lista *li);
