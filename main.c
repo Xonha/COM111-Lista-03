@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Lista/listaEncadeada.h"
-
-#include "Lista/listaEncadeada.c"
-#include "Elemento/element.h"
-#include "Elemento/element.c"
-#include "Aluno/aluno.h"
-#include "Aluno/aluno.c"
+#include "listaEncadeada.h"
+#include "listaEncadeada.c"
 
 int main(void)
 {
@@ -24,6 +19,9 @@ int main(void)
     printf("\n 6 - Remover início\t\t\t 7 - Remover final");
     printf("\n 8 - Remover matricula\t\t 9 - Buscar posicao");
     printf("\n10 - Buscar matricula\t\t11 - Imprimir");
+    printf("\n12 - Concatenar listas\t\t13 - Remover repetidos");
+    printf("\n14 - Inverter lista\t\t15 - Verifica ordenada");
+    printf("\n16 - Tamanho lista\t\t");
     printf("\nOpção: ");
     scanf("%d", &opcao);
 
@@ -128,25 +126,21 @@ int main(void)
       break;
 
     case 13:
-      li3 = removerRepetidos(li); // imprime a lista
+      li3 = removerRepetidos(li); // remove itens repetidos da lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
-
       imprimirLista(li3);
-
       break;
 
     case 14:
-      li2 = inverterLista(li); // imprime a lista
+      li2 = inverterLista(li); // inverte a lista
       if (!li2)
         printf("\nLista nao encontrada!");
       imprimirLista(li2);
       break;
 
     case 15:
-      ok = imprimirLista(li2); // imprime a lista
-      if (ok == 0)
-        printf("\nLista nao encontrada!");
+      verificarOrdenacao(li); // verifica se a lista esta ordenada
       break;
 
     case 16:

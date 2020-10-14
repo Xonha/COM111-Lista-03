@@ -1,9 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "listaEncadeada.h"
 
-#include "../Lista/listaEncadeada.h"
-#include "../Aluno/aluno.h"
-#include "../Elemento/element.h"
+struct aluno
+{
+  int matricula;
+  char nome[30];
+  float nota;
+};
+
+struct elemento
+{
+  Aluno dado;
+  struct elemento *prox;
+};
+
+void preencherAluno(Aluno *al)
+{
+  printf("\nNome: ");
+  scanf("%s", al->nome);
+  printf("Matricula: ");
+  scanf("%d", &al->matricula);
+  printf("Nota: ");
+  scanf("%f", &al->nota);
+}
+
+Aluno *alocarAluno()
+{
+  Aluno *al = (Aluno *)malloc(sizeof(Aluno));
+  return al;
+}
+
+Elemento *alocarElemento()
+{
+  Elemento *no = (Elemento *)malloc(sizeof(Elemento));
+  return no;
+}
 
 Lista *alocarLista()
 {
@@ -404,24 +436,115 @@ Lista *inverterLista(Lista *li)
     copia = *lista;
   }
 
+  liberarLista(lista);
+
   return li2;
 }
 
 Lista *removerRepetidos(Lista *li)
 {
   Lista *lista = clonarLista(li);
+  Elemento *p, *q, *r, *aux;
+  int cont = 0;
 
-  for (Elemento *no1 = *li; no1 != NULL; no1 = no1->prox)
+  for (p = *lista; p != NULL; p = p->prox)
   {
-    for (Elemento *no2 = no1->prox; no2 != NULL; no2 = no2->prox)
+    q = p;
+    for (r = q->prox; r != NULL;)
     {
-      if (no1->dado.matricula == no2->dado.matricula)
+      if (p->dado.matricula == r->dado.matricula)
       {
-        no1->prox = no2->prox;
-        removerMatricula(lista, no2->dado.matricula);
+        q->prox = q->prox->prox;
+        aux = r;
+        r = q->prox;
+        free(aux);
+      }
+      else
+      {
+        q = r;
+        r = r->prox;
       }
     }
   }
 
   return lista;
+}
+
+void verificarOrdenacao(Lista *li)
+{
+  int a, b;
+  a = verificarDecrescente(li);
+  b = verificarCrescente(li);
+
+  if (a == 0 && b == 0)
+    printf("\nLista NAO Ordenada!");
+  else
+    printf("\nLista Ordenada!");
+}
+
+int verificarDecrescente(Lista *li) // Maior -> Menor
+{
+  for (Elemento *p = *li; p != NULL; p = p->prox)
+  {
+    for (Elemento *q = p->prox; q != NULL; q = q->prox)
+    {
+      if (p->dado.matricula < q->dado.matricula)
+        return 0;
+      else // se p >= q
+        continue;
+    }
+  }
+  return 1;
+}
+
+int verificarCrescente(Lista *li)
+{
+  for (Elemento *p = *li; p != NULL; p = p->prox)
+  {
+    for (Elemento *q = p->prox; q != NULL; q = q->prox)
+    {
+      if (p->dado.matricula > q->dado.matricula)
+        return 0;
+      else // se p >= q
+        continue;
+    }
+  }
+  return 1;
+}
+
+Lista *concatenarListas(Lista *l1, Lista *l2)
+{
+  Lista *l3 = clonarLista(l1);
+
+  if (l3 == NULL)
+    return 0;
+
+  for (Elemento *item = *l2; item != NULL; item = item->prox)
+  {
+
+    Elemento *no = alocarElemento();
+
+    if (no == NULL)
+      return 0;
+
+    no->dado = item->dado;
+    no->prox = NULL;
+
+    // se a lista estiver vazia, insere no início da lista
+    if ((*l3) == NULL)
+      *l3 = item;
+    else
+    {
+      // senão percorre a lista até o fim e insere no final
+      Elemento *aux;
+      aux = *l3;
+
+      while (aux->prox != NULL)
+        aux = aux->prox;
+
+      aux->prox = item;
+    }
+  }
+
+  return l3;
 }
