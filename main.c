@@ -8,6 +8,8 @@ int main(void)
   Lista *li = NULL;
   Lista *li2 = NULL;
   Lista *li3 = NULL;
+  Lista *li4 = NULL;
+  Lista *li5 = NULL;
   int opcao, ok, valor;
 
   do
@@ -120,23 +122,24 @@ int main(void)
       break;
 
     case 12:
-      ok = imprimirLista(li); // imprime a lista
+      li3 = concatenarListas(li, li2); // remove itens repetidos da lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
+      imprimirLista(li3);
       break;
 
     case 13:
-      li3 = removerRepetidos(li); // remove itens repetidos da lista
+      li4 = removerRepetidos(li); // remove itens repetidos da lista
       if (ok == 0)
         printf("\nLista nao encontrada!");
       imprimirLista(li3);
       break;
 
     case 14:
-      li2 = inverterLista(li); // inverte a lista
-      if (!li2)
+      li5 = inverterLista(li); // inverte a lista
+      if (!li5)
         printf("\nLista nao encontrada!");
-      imprimirLista(li2);
+      imprimirLista(li5);
       break;
 
     case 15:
